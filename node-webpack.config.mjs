@@ -95,25 +95,7 @@ export default function createConfigs(_env, argv) {
     module: {
       rules: [
         {
-          // Option 1, fails at request time with Error: Could not find the module "./src/components/counter.tsx" in the React SSR Manifest.
-          // The generated server-bundle.js contains two copies of counter.tsx, named
-          //   (react-server)/./src/components/counter.tsx?9a1f
-          // and
-          //   (react-server)/./src/components/counter.tsx?2188
-          // which therefore causes dist/react-ssr-manifest to be missing the module information
-          //resource: [/\/server\/rsc\//, /\/components\/.*/],
-
-          // Option 2, fails at request time with TypeError: Cannot read properties of null (reading 'useState')
-          // and ReferenceError: React is not defined
-          // The generated server-bundle.js contains two copies of counter.tsx, named
-          //   ./src/components/counter.tsx
-          // and
-          //   (react-server)/./src/components/counter.tsx
-          resource: [/\/server\/rsc\//, /\/components\/Layout\.tsx/],
-
-          // Option 3, fails to compile with Error: react-dom/server is not supported in React Server Components.
-          //resource: [/\/server\/rsc\//, /\/components\/.*/, /routes\.tsx/],
-
+          resource: [/\/server\/rsc\//, /\/components\/App\.tsx/],
           layer: webpackRscLayerName,
         },
         {

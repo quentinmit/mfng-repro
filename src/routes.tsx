@@ -24,9 +24,8 @@ import {
 
 //console.log("manifests", manifests);
 
-import Layout from "./components/Layout";
-import { Counter } from "./components/counter";
-import { Url } from "url";
+import {Url} from "url";
+import {App} from "./components/App";
 
 export function getUiRouter() {
   const router = Router();
@@ -43,14 +42,6 @@ export function getUiRouter() {
   router.post("/", async (req, res, next) => { await handlePost(req, res, next); });
 
   return router;
-}
-
-function App() {
-  return (
-    <Layout>
-      <div>Hello world</div>
-      <Counter />
-    </Layout>);
 }
 
 const oneDay = 60 * 60 * 24;
