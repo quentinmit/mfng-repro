@@ -117,6 +117,15 @@ export default function createConfigs(_env, argv) {
               test: /\.tsx?$/,
               use: [rscSsrLoader, serverSwcLoader],
             },
+            {
+              issuerLayer: webpackRscLayerName,
+              test: /\.m?jsx?$/,
+              use: rscServerLoader,
+            },
+            {
+              test: /\.m?jsx?$/,
+              use: rscSsrLoader,
+            },
           ],
         },
         // TODO: support importing other kinds of assets, and aliases for
@@ -180,6 +189,10 @@ export default function createConfigs(_env, argv) {
         {
           test: /\.tsx?$/,
           use: [rscClientLoader, 'swc-loader'],
+        },
+        {
+          test: /\.m?jsx?$/,
+          use: rscClientLoader,
         },
       ],
     },
