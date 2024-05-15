@@ -26,6 +26,7 @@ import {
 
 import {Url} from "url";
 import {App} from "./components/App";
+import { Foo } from "./components/Foo";
 
 export function getUiRouter() {
   const router = Router();
@@ -40,6 +41,8 @@ export function getUiRouter() {
   // FIXME: routes
   router.get("/", async (req, res, next) => { await renderApp(req, res, next); });
   router.post("/", async (req, res, next) => { await handlePost(req, res, next); });
+  router.get("/foo", async (req, res, next) => { await renderApp(req, res, next); });
+  router.post("/foo", async (req, res, next) => { await handlePost(req, res, next); });
 
   return router;
 }
@@ -56,7 +59,8 @@ async function renderApp(
 
 
   return routerLocationAsyncLocalStorage.run({pathname, search}, async () => {
-    const rscAppStream = createRscAppStream(<App />, {
+    const app = (pathname == "/foo") ? (<Foo/>) : (<App/>);
+    const rscAppStream = createRscAppStream(app, {
       reactClientManifest,
       formState,
     });

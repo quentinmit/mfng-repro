@@ -92,7 +92,7 @@ export default function createConfigs(_env, argv) {
     module: {
       rules: [
         {
-          resource: [/\/server\/rsc\//, /\/components\/App\.tsx/],
+          resource: [/\/server\/rsc\//, /\/components\/App\.tsx/, /\/components\/Foo\.tsx/],
           layer: webpackRscLayerName,
         },
         {
@@ -124,16 +124,6 @@ export default function createConfigs(_env, argv) {
               use: rscSsrLoader,
             },
           ],
-        },
-        // TODO: support importing other kinds of assets, and aliases for
-        // the results of the browser build bundles
-        {
-          test: /\.png$/,
-          type: "asset/resource",
-          generator: {
-            outputPath: "assets/",
-            filename: "[hash][ext][query]",
-          },
         },
       ],
       // Add modules as appropriate
